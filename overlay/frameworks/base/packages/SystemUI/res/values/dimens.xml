@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Charging port location: bottom-right side of the device -->
+    <item name="physical_charger_port_location_normalized_x" type="dimen" format="float">1</item>
+    <item name="physical_charger_port_location_normalized_y" type="dimen" format="float">0.9</item>
+</resources>

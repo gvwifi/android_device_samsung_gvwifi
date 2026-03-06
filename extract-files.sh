@@ -8,7 +8,7 @@
 
 set -e
 
-DEVICE=a5xelte
+DEVICE=gvwifi
 VENDOR=samsung
 
 # Load extract_utils and do some sanity checks

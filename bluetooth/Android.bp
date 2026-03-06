@@ -1,0 +1,4 @@
+filegroup {
+    name: "vnd_gvwifi.txt",
+    srcs: ["vnd_gvwifi.txt"],
+}

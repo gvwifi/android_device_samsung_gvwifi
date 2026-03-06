@@ -1,3 +1,7 @@
+on early-boot
+    # Allow RT scheduling for surfaceflinger/media without CAP_SYS_NICE
+    setrlimit rtprio 10 10
+
 on boot
     # Assign TCP buffer thresholds to be ceiling value of technology maximums
     # Increased technology maximums should be reflected here.
@@ -21,10 +25,7 @@ on fs
     chown system radio /sys/class/sensors/accelerometer_sensor/mcu_rev
     chown system radio /sys/class/sensors/accelerometer_sensor/mcu_name
 
-    # Fingerprint_sensor
-    chown system radio /sys/class/fingerprint/fingerprint/type_check
-    chown system radio /sys/class/fingerprint/fingerprint/name
-    chown system radio /sys/class/fingerprint/fingerprint/vendor
+
 
     # BHY
     chown system radio  /sys/devices/13870000.hsi2c/i2c-0/0-0028/iio:device0/event_shealth_int
@@ -46,6 +47,21 @@ on property:sys.boot_completed=1
     # Set best cache size for internal and external storages
     write /sys/block/mmcblk0/bdi/read_ahead_kb 128
     write /sys/block/mmcblk1/bdi/read_ahead_kb 2048
+
+    # Low-RAM: maximize zram utilization
+    write /proc/sys/vm/swappiness 100
+
+    # Low-RAM: kernel VM tuning
+    write /proc/sys/vm/dirty_ratio 20
+    write /proc/sys/vm/dirty_background_ratio 5
+    write /proc/sys/vm/vfs_cache_pressure 200
+    write /proc/sys/vm/min_free_kbytes 8192
+    write /proc/sys/vm/extra_free_kbytes 24300
+
+    # KSM: merge identical memory pages across processes
+    write /sys/kernel/mm/ksm/pages_to_scan 100
+    write /sys/kernel/mm/ksm/sleep_millisecs 500
+    write /sys/kernel/mm/ksm/run 1
 
 on shutdown
     # Fix permissions then store the current batt_capacity_max value in the EFS partition

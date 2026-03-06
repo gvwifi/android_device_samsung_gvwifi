@@ -14,12 +14,13 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/samsung/a5xelte
+LOCAL_PATH := device/samsung/gvwifi
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_PATH)/lineage_a5xelte.mk
+    device/samsung/gvwifi/lineage_gvwifi.mk
 
 COMMON_LUNCH_CHOICES := \
-    lineage_a5xelte-user \
-    lineage_a5xelte-userdebug \
-    lineage_a5xelte-eng
+    lineage_gvwifi-bp2a-userdebug \
+    lineage_gvwifi-bp2a-eng \
+    lineage_gvwifi-userdebug \
+    lineage_gvwifi-eng

@@ -14,20 +14,22 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/samsung/a5xelte
+LOCAL_PATH := device/samsung/gvwifi
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(LOCAL_PATH)/device.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_l_mr1.mk)
 
 # Inherit common Lineage phone.
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+$(call inherit-product, vendor/lineage/config/common_full_tablet.mk)
+
+PRODUCT_CHARACTERISTICS := tablet
 
 # Set those variables here to overwrite the inherited values.
-PRODUCT_NAME := lineage_a5xelte
-PRODUCT_DEVICE := a5xelte
-PRODUCT_MODEL := SM-A510F
+PRODUCT_NAME := lineage_gvwifi
+PRODUCT_DEVICE := gvwifi
+PRODUCT_MODEL := SM-T670
 PRODUCT_BRAND := samsung
 PRODUCT_MANUFACTURER := samsung
 PRODUCT_GMS_CLIENTID_BASE := android-samsung
