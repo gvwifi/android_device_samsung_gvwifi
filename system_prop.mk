@@ -65,6 +65,19 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Galaxy View WiFi (gvwifi) is a WiFi-only tablet with no cellular modem.
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.radio.noril=1
+
+# Recovery USB gadget identifiers (Samsung Galaxy View).
+# base_vendor.mk supplies Google fallback defaults (18D1/D001) via ?=.
+# Overriding here with Samsung's VID and the standard MTP/ADB product IDs so
+# that the recovery USB gadget is recognised by the Samsung ADB Windows driver
+# without a manual INF edit.  These are VENDOR properties (placed in
+# vendor/build.prop) and are also merged into recovery's prop.default by the
+# build system, so they are available when recovery's init.rc writes
+# /config/usb_gadget/g1/idVendor and idProduct.
+PRODUCT_VENDOR_PROPERTIES += \
+    ro.recovery.usb.vid=04e8 \
+    ro.recovery.usb.adb.pid=6860 \
+    ro.recovery.usb.fastboot.pid=685d
 #    telephony.lteOnCdmaDevice=0 \
 #    persist.radio.sib16_support=0 \
 #    rild.libpath=/system/vendor/lib/libsec-ril.so \

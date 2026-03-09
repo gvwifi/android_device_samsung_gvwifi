@@ -80,3 +80,14 @@ BOARD_CAMERA_HAL3_FEATURE := true
 # Legacy BLOB Support
 #TARGET_PROCESS_SDK_VERSION_OVERRIDE += \
 #    /system/vendor/bin/hw/rild=27
+
+# Recovery ADB - inject debug properties into recovery's prop.default ONLY.
+BOARD_RECOVERY_IMAGE_PREPARE = \
+	sed -i '/^ro\.adb\.secure=/d'          $(TARGET_RECOVERY_ROOT_OUT)/prop.default ; \
+	sed -i '/^ro\.adb\.secure\.recovery=/d' $(TARGET_RECOVERY_ROOT_OUT)/prop.default ; \
+	sed -i '/^ro\.debuggable=/d'             $(TARGET_RECOVERY_ROOT_OUT)/prop.default ; \
+	sed -i '/^ro\.secure=/d'                 $(TARGET_RECOVERY_ROOT_OUT)/prop.default ; \
+	echo 'ro.adb.secure=0'          >> $(TARGET_RECOVERY_ROOT_OUT)/prop.default ; \
+	echo 'ro.adb.secure.recovery=0' >> $(TARGET_RECOVERY_ROOT_OUT)/prop.default ; \
+	echo 'ro.debuggable=1'          >> $(TARGET_RECOVERY_ROOT_OUT)/prop.default ; \
+	echo 'ro.secure=0'              >> $(TARGET_RECOVERY_ROOT_OUT)/prop.default
