@@ -184,4 +184,8 @@
     <bool name="config_freeformWindowManagement">false</bool>
     <bool name="config_isDesktopModeSupported">false</bool>
     <bool name="config_canInternalDisplayHostDesktops">false</bool>
+     
+     <!-- Whether WM DisplayContent supports high performance transitions
+         (lower-end devices may want to disable) -->
+    <bool name="config_deviceSupportsHighPerfTransitions">false</bool>
 </resources>
